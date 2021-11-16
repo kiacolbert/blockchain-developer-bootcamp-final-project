@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.9;
 
-import "tools/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "tools/node_modules/@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract OriginalArtwork is ERC721URIStorage {
     using Counters for Counters.Counter;
