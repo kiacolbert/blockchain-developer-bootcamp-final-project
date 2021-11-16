@@ -15,9 +15,9 @@ async function main() {
 
   // We get the contract to deploy
   const Provenance = await hre.ethers.getContractFactory("Provenance");
-  const provenance = await Provenance.deploy("Hello, Hardhat!");
+  const provenance = await Provenance.deploy();
 
-  await Provenance.deployed();
+  await provenance.deployed();
 
   console.log("Provenance deployed to:", provenance.address);
 }
