@@ -34,7 +34,6 @@ contract Provenance {
         returns (uint256 artId) 
     {
         // and check that artwork is not registered
-        //TODO: make mapping and check that value is not 0
         require(keccak256(abi.encode(addressToArtistName[artist])) != keccak256(""), "Artist is not registered");
         OriginalArtwork oa = new OriginalArtwork();
         artId = oa.createOriginalArtwork(artist, artURI);
