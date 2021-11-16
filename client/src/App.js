@@ -9,19 +9,18 @@ function App() {
   const [userAccount, setUserAccount] = useState();
 
   async function requestAccount() {
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
+   const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+   setUserAccount(account);
   }
 
-  async function registerArtist() {
-    if (typeof window.ethereum !== 'undefined') {
-      // await requestAccount()
+  async function registerArtist(e) {
+    e.preventDefault();
+    if (typeof window.ethereum !== 'undefined' && userAccount) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(ProvenanceAddress, Provenance.abi, signer);
-      console.log(contract);
-      // const transation = await contract.transfer(userAccount, amount);
-      // await transation.wait();
-      // console.log(`${amount} successfully registered to ${userAccount}`);
+      const transaction = await contract.registerArtist(userAccount);
+      await transaction.wait();
     }
   }
 
