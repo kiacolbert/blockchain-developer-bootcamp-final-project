@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ethers } from 'ethers';
 import Provenance from './artifacts/contracts/Provenance.sol/Provenance.json'
 
-const ProvenanceAddress = '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853';
+const ProvenanceAddress = '0x610178dA211FEF7D417bC0e6FeD39F05609AD788';
 
 function App() {
   const [userAccount, setUserAccount] = useState();
@@ -20,15 +20,11 @@ function App() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(ProvenanceAddress, Provenance.abi, signer);
-      debugger;
-      const transaction = await contract.registerArtist(userAccount, userName);
+      const transaction = await contract.registerArtist(userName, userAccount);
       await transaction.wait();
+      const artists = await contract.getArtist();
+      console.log(artists);
     }
-  }
-
-  function handleChange(e) {
-    debugger;
-    setUserName(e.target.value);
   }
 
   return (
@@ -37,8 +33,7 @@ function App() {
         <button onClick={requestAccount}>Connect to Metamask</button>
       <form onSubmit={registerArtist}>
         <label>
-          Name:
-          <input type="text" name="name" onChange={handleChange}/>
+          <input type="text" name="name" onChange={e => setUserName(e.target.value)} placeholder="Enter Name"/>
         </label>
         <input type="submit" value="Submit" />
       </form>
