@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { ethers } from 'ethers';
 import Provenance from './artifacts/contracts/Provenance.sol/Provenance.json'
 
-const ProvenanceAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
+const ProvenanceAddress = '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853';
 
 function App() {
   const [userAccount, setUserAccount] = useState();
+  const [userName, setUserName] = useState();
 
   async function requestAccount() {
    const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -19,9 +20,15 @@ function App() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(ProvenanceAddress, Provenance.abi, signer);
-      const transaction = await contract.registerArtist(userAccount);
+      debugger;
+      const transaction = await contract.registerArtist(userAccount, userName);
       await transaction.wait();
     }
+  }
+
+  function handleChange(e) {
+    debugger;
+    setUserName(e.target.value);
   }
 
   return (
@@ -31,7 +38,7 @@ function App() {
       <form onSubmit={registerArtist}>
         <label>
           Name:
-          <input type="text" name="name" />
+          <input type="text" name="name" onChange={handleChange}/>
         </label>
         <input type="submit" value="Submit" />
       </form>

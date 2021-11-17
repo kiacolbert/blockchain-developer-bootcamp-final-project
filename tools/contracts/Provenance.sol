@@ -7,7 +7,7 @@ import "./OriginalArtwork.sol";
 
 contract Provenance {
     // state variables
-    address[] private artists;
+    string[] private artistNames;
     address[] private owners;
     uint256[] private artworks;
 
@@ -23,10 +23,15 @@ contract Provenance {
         console.log("Deploying a Provenance ");
     }
 
-    function registerArtist(address artist) public {
+    function registerArtist(address artist, string memory name) public {
         require(artist != address(0), "Artist can not have 0 address");
-        require(keccak256(abi.encode(addressToArtistName[artist])) == keccak256(""), "Artist is already registered");
-        artists.push(artist);
+        // require(keccak256(abi.encode(addressToArtistName[artist])) == keccak256(""), "Artist is already registered");
+        artistNames.push(name);
+        addressToArtistName[artist] = name;
+    }
+
+    function getArtist() public view returns (string[] memory) {
+        return artistNames;
     }
 
     function registerArtwork(address artist, string memory artURI) 
