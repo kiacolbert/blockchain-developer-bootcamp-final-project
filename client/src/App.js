@@ -8,6 +8,7 @@ const ProvenanceAddress = '0x610178dA211FEF7D417bC0e6FeD39F05609AD788';
 function App() {
   const [userAccount, setUserAccount] = useState();
   const [userName, setUserName] = useState();
+  const [artists, setArtists] = useState([]);
 
   async function requestAccount() {
    const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -22,8 +23,8 @@ function App() {
       const contract = new ethers.Contract(ProvenanceAddress, Provenance.abi, signer);
       const transaction = await contract.registerArtist(userName, userAccount);
       await transaction.wait();
-      const artists = await contract.getArtist();
-      console.log(artists);
+      const res = await contract.getArtist();
+      setArtists(res); //TODO: artist is missing last index
     }
   }
 
