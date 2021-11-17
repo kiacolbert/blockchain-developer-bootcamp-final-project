@@ -23,7 +23,7 @@ contract Provenance {
         console.log("Deploying a Provenance ");
     }
 
-    function registerArtist(address artist, string memory name) public {
+    function registerArtist(string memory name, address artist) public {
         require(artist != address(0), "Artist can not have 0 address");
         // require(keccak256(abi.encode(addressToArtistName[artist])) == keccak256(""), "Artist is already registered");
         artistNames.push(name);
