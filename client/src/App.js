@@ -28,6 +28,25 @@ function App() {
     }
   }
 
+  function Table (props) {
+    return<table>
+      <tr>
+        <th>Artist</th>
+      </tr>
+      <Row />
+    </table>;
+  }
+
+  function Row () {
+    return artists.map(artist => {
+      return(
+      <tr>
+       <td>{artist}</td>
+      </tr>
+     ) 
+    });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -38,6 +57,7 @@ function App() {
         </label>
         <input type="submit" value="Submit" />
       </form>
+     <Table />
       </header>
     </div>
   );
