@@ -9,6 +9,7 @@ function App() {
   const [userAccount, setUserAccount] = useState();
   const [userName, setUserName] = useState();
   const [artists, setArtists] = useState([]);
+  const [errorMessage, setErrorMessage] = useState();
 
   async function requestAccount() {
    const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -21,14 +22,19 @@ function App() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(ProvenanceAddress, Provenance.abi, signer);
-      const transaction = await contract.registerArtist(userName, userAccount);
-      await transaction.wait();
-      const res = await contract.getArtist();
-      setArtists(res); //TODO: artist is missing last index
+      try {
+        const transaction = await contract.registerArtist(userName, userAccount);
+        await transaction.wait();
+        const res = await contract.getArtist();
+        setArtists(res); //TODO: artist is missing last index
+        setErrorMessage('');
+      } catch (error) {
+        setErrorMessage(error.message)
+      }
     }
   }
 
-  function Table (props) {
+  function Table () {
     return (
     <table>
       <thead>
@@ -52,6 +58,10 @@ function App() {
     });
   }
 
+  function Error () {
+    return <p>{errorMessage}</p>
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -62,7 +72,8 @@ function App() {
         </label>
         <input type="submit" value="Submit" />
       </form>
-     <Table />
+      {!errorMessage && <Table />}
+      {errorMessage && <Error />}
       </header>
     </div>
   );
