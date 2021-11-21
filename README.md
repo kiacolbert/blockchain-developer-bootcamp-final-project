@@ -4,6 +4,16 @@ Decentralized provenance verification for physical art.
 
 Artist register their artwork on the ethereum block chain.  When they sell their art, ownership is transfered and they receive royalties. Buyers never have to wonder about the authenticity of the work.
 
+**Directory Structure**
+
+Frontend is a React app located under the `/client` . Hardhat is the ethereum development environment and is located under `/tools`. 
+```
+project
+|   README.md
+|___client
+|___tools
+```
+
 **Workflow**
 1. Artist registers to contract.
 2. Artwork image is uploaded to a distributed file store and a hash created.
