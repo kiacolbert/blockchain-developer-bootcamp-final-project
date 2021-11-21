@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ethers } from 'ethers';
 import Provenance from './artifacts/contracts/Provenance.sol/Provenance.json'
 
-const ProvenanceAddress = '0x610178dA211FEF7D417bC0e6FeD39F05609AD788';
+const ProvenanceAddress = '0x68B1D87F95878fE05B998F19b66F4baba5De1aed';
 
 function App() {
   const [userAccount, setUserAccount] = useState();
