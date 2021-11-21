@@ -49,10 +49,10 @@ function App() {
   }
 
   function Row () {
-    return artists.map(artist => {
+    return artists.map((artist, idx) => {
       return(
       <tr>
-       <td>{artist}</td>
+       <td key={idx}>{artist}</td>
       </tr>
      ) 
     });
