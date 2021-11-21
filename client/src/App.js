@@ -31,7 +31,7 @@ function App() {
   function Table (props) {
     return<table>
       <tr>
-        <th>Artist</th>
+        <th>Registered Artists</th>
       </tr>
       <Row />
     </table>;
