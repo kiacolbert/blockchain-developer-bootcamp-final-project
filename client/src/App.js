@@ -29,12 +29,17 @@ function App() {
   }
 
   function Table (props) {
-    return<table>
-      <tr>
-        <th>Registered Artists</th>
-      </tr>
-      <Row />
-    </table>;
+    return (
+    <table>
+      <thead>
+        <tr>
+          <th>Registered Artists</th>
+        </tr>
+      </thead>
+      <tbody>
+        <Row />
+      </tbody>
+      </table>);
   }
 
   function Row () {
