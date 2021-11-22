@@ -11,39 +11,51 @@ contract Provenance {
     address[] private owners;
     uint256[] private artworks;
 
+    struct Artist {
+        address artistAddress;
+        string name;
+        uint256[] artworks;
+        bool exists;
+    }
+
     struct History { 
         address owner;
         uint256 date;
     }
-    mapping (address => string) public addressToArtistName;
-    mapping (address => uint256) public artistToArtwork;
+
+    mapping (address => Artist) public registeredArtists;
     mapping (uint256 => History[]) public artworkToHistory;
 
     constructor() {
-        console.log("Deploying a Provenance ");
+        console.log("Deploying a Provenance");
     }
 
-    function registerArtist(string memory name, address artist) public {
-        require(artist != address(0), "Artist can not have 0 address");
-        // require(keccak256(abi.encode(addressToArtistName[artist])) == keccak256(""), "Artist is already registered");
-        artistNames.push(name);
-        addressToArtistName[artist] = name;
+    function registerArtist(string memory _name) public {
+        require(msg.sender != address(0), "Artist can not have 0 address");
+        if (registeredArtists[msg.sender].exists) {
+            revert("Artist is already registered");
+        }
+        uint256[] memory arr;
+        Artist memory artist = Artist({ artistAddress: msg.sender, name: _name, artworks: arr, exists: true });
+        registeredArtists[msg.sender] = artist;
+        artistNames.push(_name);
     }
 
     function getArtist() public view returns (string[] memory) {
         return artistNames;
     }
 
-    function registerArtwork(address artist, string memory artURI) 
+    function registerArtwork(string memory artURI) 
         public 
         returns (uint256 artId) 
     {
-        // and check that artwork is not registered
-        require(keccak256(abi.encode(addressToArtistName[artist])) != keccak256(""), "Artist is not registered");
+        require(registeredArtists[msg.sender].exists, "Artist must be registered");
+
         OriginalArtwork oa = new OriginalArtwork();
-        artId = oa.createOriginalArtwork(artist, artURI);
+        artId = oa.createOriginalArtwork(msg.sender, artURI);
+        registeredArtists[msg.sender].artworks.push(artId);
         artworks.push(artId);
-        // History history = new History({ owner: artist})
+        // History history = History({ owner: artist})
         // artistToArtwork  // add artwork to artist.
         return artId;
     }

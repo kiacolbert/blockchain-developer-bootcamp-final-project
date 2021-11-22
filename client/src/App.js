@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ethers } from 'ethers';
 import Provenance from './artifacts/contracts/Provenance.sol/Provenance.json'
 
-const ProvenanceAddress = '0x68B1D87F95878fE05B998F19b66F4baba5De1aed';
+const ProvenanceAddress = '0x7a2088a1bFc9d81c55368AE168C2C02570cB814F';
 
 function App() {
   const [userAccount, setUserAccount] = useState();
@@ -23,7 +23,7 @@ function App() {
       const signer = provider.getSigner();
       const contract = new ethers.Contract(ProvenanceAddress, Provenance.abi, signer);
       try {
-        const transaction = await contract.registerArtist(userName, userAccount);
+        const transaction = await contract.registerArtist(userName);
         await transaction.wait();
         const res = await contract.getArtist();
         setArtists(res); //TODO: artist is missing last index
