@@ -27,7 +27,7 @@ contract Provenance {
     mapping (uint256 => History[]) public artworkToHistory;
 
     constructor() {
-        console.log("Deploying a Provenance");
+        console.log("Deploying Provenance");
     }
 
     function registerArtist(string memory _name) public {
@@ -58,6 +58,10 @@ contract Provenance {
         // History history = History({ owner: artist})
         // artistToArtwork  // add artwork to artist.
         return artId;
+    }
+
+    function getArtwork() public view returns (uint256[] memory)  {
+        return artworks;
     }
 
     function getArtworkHistory(uint256 artHash) public view returns (History[] memory) {
