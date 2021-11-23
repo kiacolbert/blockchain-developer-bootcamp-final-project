@@ -22,8 +22,9 @@ module.exports = {
     artifacts: '../client/src/artifacts',
   },
   networks: {
-    hardhat: {
-      chainId: 1337
-    }
+    // uncomment for local development
+    // hardhat: {
+    //   chainId: 1337
+    // }
   }
 };

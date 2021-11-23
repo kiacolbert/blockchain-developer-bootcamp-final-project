@@ -32,6 +32,7 @@ project
 
 ### Running Locally
 - Frontend: `yarn start` in `/client`
+- Uncomment hardhat network in [hardhat.config.js](https://github.com/kiacolbert/blockchain-developer-bootcamp-final-project/blob/3ca68db75aef1dc3f0f6bda364400b73ebe9d066/tools/hardhat.config.js#L25-L27)
 - Deploy contracts: `npx hardhat run scripts/deploy.js --network localhost`
 - Update Provenance contract address in [App.js](https://github.com/kiacolbert/blockchain-developer-bootcamp-final-project/blob/3ca68db75aef1dc3f0f6bda364400b73ebe9d066/client/src/App.js#L6)
 - Start local network: `npx hardhat node`
