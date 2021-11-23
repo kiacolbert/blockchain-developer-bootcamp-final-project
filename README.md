@@ -48,6 +48,10 @@ project
 - Start local network: `npx hardhat node`
 - Import test address into metamask
 
+### Running on Test network
+- Add desired network in `hardhat.config.js` under `module.exports`.
+- Copy `sample.env` and rename to `.env`. Add private key to `ACCOUNTS`.
+
 ### Testing
-`npx hardhat test`
+In `tools/` run `npx hardhat test`
 
