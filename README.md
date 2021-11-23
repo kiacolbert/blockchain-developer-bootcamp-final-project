@@ -11,9 +11,17 @@ Hosted at: https://pensive-tesla-2256e2.netlify.app
 Frontend is a React app located under the `/client` . Hardhat is the ethereum development environment and is located under `/tools`. 
 ```
 project
-|   README.md
-|___client
-|___tools
+|___client/
+|   |____package.json
+|   |____src/
+|        |____artifacts/ // contract builds
+|        |____App.js
+|___tools/
+|   |____contracts/
+|   |____test/
+|   |____hardhat.config.js
+|   |____sample.env
+|   |____package.json
 ```
 
 **Workflow**
