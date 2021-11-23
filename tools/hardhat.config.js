@@ -24,7 +24,7 @@ module.exports = {
   },
   networks: {
     ropsten: {
-      url: "https://ropsten.infura.io/v3/2db8feac74b6494089e9e4b4e10d1204",
+      url: process.env.URL,
       accounts: [process.env.ACCOUNTS]
     }
     // uncomment for local development
