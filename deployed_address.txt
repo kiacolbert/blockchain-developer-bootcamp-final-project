@@ -1,0 +1,2 @@
+test network: ropsten
+test network address: 0xbC29ddE9F7A18F8BEcF9E840AB8db1665b90EeCb
