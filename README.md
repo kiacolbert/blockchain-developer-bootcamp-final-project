@@ -4,6 +4,8 @@ Decentralized provenance verification for physical art.
 
 Artist register their artwork on the ethereum block chain and are the original owners.  When they sell their art, ownership is transferred and they receive royalties(TODO). Buyers never have to wonder about the authenticity of the work.
 
+Hosted at: https://pensive-tesla-2256e2.netlify.app
+
 **Directory Structure**
 
 Frontend is a React app located under the `/client` . Hardhat is the ethereum development environment and is located under `/tools`. 
