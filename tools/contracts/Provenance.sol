@@ -4,9 +4,9 @@ pragma solidity 0.8.9;
 import "hardhat/console.sol";
 import "./OriginalArtwork.sol";
 
-
+/// @title Origin and history for artwork
+/// @author Kia Coblert
 contract Provenance {
-    // state variables
     string[] private artistNames;
     address[] private owners;
     uint256[] private artworks;
@@ -30,6 +30,8 @@ contract Provenance {
         console.log("Deploying Provenance");
     }
 
+    /// @notice registers sender as artist
+    /// @param name
     function registerArtist(string memory _name) public {
         require(msg.sender != address(0), "Artist can not have 0 address");
         if (registeredArtists[msg.sender].exists) {
@@ -40,11 +42,13 @@ contract Provenance {
         registeredArtists[msg.sender] = artist;
         artistNames.push(_name);
     }
-
+    /// @notice returns registered artist
     function getArtist() public view returns (string[] memory) {
         return artistNames;
     }
 
+    /// @notice artist must be registered to register their artwork
+    /// @dev implements ERC721URIStorage
     function registerArtwork(string memory artURI) 
         public 
         returns (uint256 artId) 
@@ -60,14 +64,18 @@ contract Provenance {
         return artId;
     }
 
+    /// @notice returns all artwork
     function getArtwork() public view returns (uint256[] memory)  {
         return artworks;
     }
-
+    /// @notice returns history of artwork
+    /// @dev TODO: History implementation needs to be completed
     function getArtworkHistory(uint256 artHash) public view returns (History[] memory) {
         return artworkToHistory[artHash];
     }
 
+    /// @notice transfers ownership of artwork
+    /// @dev TODO: implement
     function transferOwnership(address previousOwner, address newOwner) public {
 
     }
