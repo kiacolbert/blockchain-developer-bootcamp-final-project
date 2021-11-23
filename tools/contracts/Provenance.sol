@@ -31,7 +31,7 @@ contract Provenance {
     }
 
     /// @notice registers sender as artist
-    /// @param name
+    /// @param _name artist name
     function registerArtist(string memory _name) public {
         require(msg.sender != address(0), "Artist can not have 0 address");
         if (registeredArtists[msg.sender].exists) {
