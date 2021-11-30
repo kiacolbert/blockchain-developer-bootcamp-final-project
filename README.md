@@ -6,7 +6,9 @@ Artist register themselves to the contract. (TODO) Next they register their artw
 
 Hosted at: https://pensive-tesla-2256e2.netlify.app
 
+Making transaction
 ![part 1](./screencast/partOne.gif)
+Transaction success
 ![part 2](./screencast/partTwo.gif)
 
 **Directory Structure**
