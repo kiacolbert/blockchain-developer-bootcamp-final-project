@@ -2,9 +2,12 @@
 
 Decentralized provenance verification for physical art.
 
-Artist register their artwork on the ethereum block chain and are the original owners.  When they sell their art, ownership is transferred and they receive royalties(TODO). Buyers never have to wonder about the authenticity of the work.
+Artist register themselves to the contract. (TODO) Next they register their artwork on the ethereum block chain.  When they sell their art, ownership is transferred and they receive royalties . Buyers never have to wonder about the authenticity of the work.
 
 Hosted at: https://pensive-tesla-2256e2.netlify.app
+
+![part 1](./screencast/partOne.gif)
+![part 2](./screencast/partTwo.gif)
 
 **Directory Structure**
 
@@ -14,7 +17,7 @@ project
 |___client/
 |   |____package.json
 |   |____src/
-|        |____artifacts/ // contract builds
+|        |____artifacts/ //contract builds
 |        |____App.js
 |___tools/
 |   |____contracts/
@@ -25,11 +28,14 @@ project
 ```
 
 **Workflow**
-1. Artist registers to contract.
-2. Artwork image is uploaded to a distributed file store and a hash created.
-3. Artist registers the hash to the contract as original work.
-4. Artist sells artwork and transfers ownership.
-5. No more questions of, "is this legit?"
+1. Connect to metamask.
+2. Artist registers to contract. **NOTE: An address can only register once.**
+3. UI displays registered artist.
+
+TODO:
+1. Artist mints nft for artwork with a url that links to metadata about the work. 
+2. Artist sells artwork and transfers ownership.
+3. No more questions of, "is this legit?"
 
 
 ## To Run
@@ -54,4 +60,7 @@ project
 
 ### Testing
 In `tools/` run `npx hardhat test`
+
+
+Public Ethereum Account: 0x3A4dCEC49e3085dA16c0B49411BfF8352908883e
 
